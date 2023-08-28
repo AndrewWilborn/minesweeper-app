@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class BoardComponent {
   board:string = "012345678                                                                                                                                                                                                                                                       "
+
+  idArray(x:number){
+    let returnArr = [];
+    for(let i = 0; i < x; i++){
+      returnArr.push(i);
+    }
+    return returnArr;
+  }
+
+  onStringChanged(newBoard: string) {
+    this.board = newBoard;
+  }
 }

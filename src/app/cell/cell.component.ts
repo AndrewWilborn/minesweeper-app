@@ -6,8 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent {
-  @Input() cellVal!: string;
-  @Input() numberCellVal!:number;
+  @Input() board!: string;
+  @Input() cellId!: number;
   numberArr: string[] = ["bg-blank", "bg-one", "bg-two", "bg-three", "bg-four", "bg-five", "bg-six", "bg-seven", "bg-eight"];
 
   isNumber(x:string){

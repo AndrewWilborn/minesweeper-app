@@ -1,11 +1,11 @@
-<div *ngIf="cellVal===' '" [ngClass]="'
+<div *ngIf="board[cellId]===' '" [ngClass]="'
   w-6
   h-6
   bg-hidden
 '"></div>
 
-<div *ngIf="isNumber(cellVal)" [ngClass]="'
+<div *ngIf="isNumber(board[cellId])" [ngClass]="'
   w-6
   h-6
-' + numberArr[numberCellVal]
+' + numberArr[+board[cellId]]
 "></div>
