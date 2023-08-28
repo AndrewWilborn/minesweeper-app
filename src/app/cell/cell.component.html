@@ -4,7 +4,7 @@
   bg-hidden
 '"></div>
 
-<div *ngIf="cellVal !== ' '" [ngClass]="'
+<div *ngIf="isNumber(cellVal)" [ngClass]="'
   w-6
   h-6
 ' + numberArr[numberCellVal]
