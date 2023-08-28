@@ -1,4 +1,6 @@
-<div *ngIf="board[cellId]===' '" [ngClass]="'
+<div *ngIf="board[cellId]===' '" 
+(click)="testMove()"
+[ngClass]="'
   w-6
   h-6
   bg-hidden
