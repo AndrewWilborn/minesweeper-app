@@ -1,5 +1,6 @@
-<div class="flex flex-wrap">
+<div class="grid grid-cols-16">
   <app-cell
     *ngFor="let cellVal of board.split('')"
+    [cellVal]="cellVal"
   ></app-cell>
 </div>
