@@ -19,6 +19,9 @@ module.exports = {
         'six': '#00807f',
         'seven': '#000000',
         'eight': '#808080'
+      },
+      backgroundImage: {
+        'hidden': "url('assets/hidden.png')"
       }
     },
   },
