@@ -21,7 +21,10 @@ module.exports = {
         'eight': '#808080'
       },
       backgroundImage: {
-        'hidden': "url('assets/hidden.png')"
+        'hidden': "url('assets/hidden.png')",
+        'flag': "url('assets/flag.png')",
+        'mine': "url('assets/mine.png')",
+        'redmine': "url('assets/redmine.png')",
       }
     },
   },
