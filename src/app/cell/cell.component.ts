@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CellComponent {
   @Input() board!: string;
   @Input() cellId!: number;
-  @Input() inGame!: boolean;
+  @Input() gameId!: string;
   @Output() stringChanged = new EventEmitter<string>();
   numberArr: string[] = ["bg-blank", "bg-one", "bg-two", "bg-three", "bg-four", "bg-five", "bg-six", "bg-seven", "bg-eight"];
 
@@ -22,7 +22,7 @@ export class CellComponent {
   }
 
   testMove() {
-    console.log("hello")
+    
     this.board = this.board.substring(0, this.cellId) + '8' + this.board.substring(this.cellId+1)
   }
 }
