@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
 export class CellComponent {
   @Input() cellVal!: string;
   @Input() numberCellVal!:number;
-  colorArr: string[] = ["text-white", "text-one", "text-two", "text-three", "text-four", "text-five", "text-six", "text-seven", "text-eight"];
+  numberArr: string[] = ["bg-blank", "bg-one", "bg-two", "bg-three", "bg-four", "bg-five", "bg-six", "bg-seven", "bg-eight"];
 }
