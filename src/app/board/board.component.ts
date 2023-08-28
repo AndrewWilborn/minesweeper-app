@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class BoardComponent {
   board:string = "012345678                                                                                                                                                                                                                                                       "
-
+  inGame:boolean = false;
   idArray(x:number){
     let returnArr = [];
     for(let i = 0; i < x; i++){

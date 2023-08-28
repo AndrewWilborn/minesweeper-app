@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class CellComponent {
   @Input() board!: string;
   @Input() cellId!: number;
+  @Input() inGame!: boolean;
   numberArr: string[] = ["bg-blank", "bg-one", "bg-two", "bg-three", "bg-four", "bg-five", "bg-six", "bg-seven", "bg-eight"];
 
   isNumber(x:string){
