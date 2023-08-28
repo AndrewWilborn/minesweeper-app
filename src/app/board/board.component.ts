@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  board:string = "                                                                                                                                                                                                                                                                "
+  board:string = "12345678                                                                                                                                                                                                                                                        "
 }
