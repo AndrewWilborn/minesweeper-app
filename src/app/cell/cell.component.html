@@ -1,12 +1,10 @@
 <div *ngIf="!flagLocations[cellId]">
-  <div *ngIf="board[cellId]===' '" 
-  (click)="clickHandler()"
-  [ngClass]="'
+  <div *ngIf="board[cellId]===' '" (click)="clickHandler()" [ngClass]="'
     w-6
     h-6
     bg-hidden
   '"></div>
-  
+
   <div *ngIf="isNumber(board[cellId])" [ngClass]="'
     w-6
     h-6
@@ -14,9 +12,15 @@
   "></div>
 </div>
 
-<div *ngIf="flagLocations[cellId]"
-  (click)="clickHandler()"
-  [ngClass]="'
+<div *ngIf="board[cellId] == '*'" [ngClass]="'
+w-6
+h-6
+bg-redmine'
+">
+
+</div>
+
+<div *ngIf="flagLocations[cellId]" (click)="clickHandler()" [ngClass]="'
   w-6
   h-6
   bg-flag
