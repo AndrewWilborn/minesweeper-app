@@ -23,22 +23,30 @@ export class CellComponent {
 
   async clickHandler() {
     if (!this.flagMode && !this.flagLocations[this.cellId]) {
-      this.board = this.board.substring(0, this.cellId) + '8' + this.board.substring(this.cellId + 1)
-      this.boardChanged.emit(this.board)
       if (!this.gameId) {
         try {
-          const response = await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-type': 'application/json',
-            }
-          })
+          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId}`,
+            {
+              method: 'POST',
+            })
             .then(response => response.json())
             .then(data => {
               this.gameId = data;
               this.gameChanged.emit(this.gameId)
             })
+          await fetch(`http://localhost:5062/move?move=${this.cellId}&uuid=${this.gameId}`,
+          {
+            method: 'POST',
+          })
+          .then(response => {
+            console.log(response)
+            return response.json()
+          })
+          .then(data => {
+            this.board = data.board;
+            console.log(this.board)
+            this.boardChanged.emit(this.board)
+          })
         } catch (error: any) {
           console.error(error.message)
         }
