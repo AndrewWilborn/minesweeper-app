@@ -16,7 +16,10 @@ export class BoardComponent {
     return returnArr;
   }
 
-  onStringChanged(newBoard: string) {
+  onBoardChanged(newBoard: string) {
     this.board = newBoard;
+  }
+  onGameIdChanged(gameId: string) {
+    this.gameId = gameId;
   }
 }

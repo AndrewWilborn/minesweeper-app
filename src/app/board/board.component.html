@@ -4,5 +4,7 @@
     [board]="board"
     [cellId]="+cellId"
     [gameId]="gameId"
+    (boardChanged)="onBoardChanged($event)"
+    (gameChanged)="onGameIdChanged($event)"
   ></app-cell>
 </div>
