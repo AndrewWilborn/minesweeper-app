@@ -23,22 +23,22 @@ export class BoardComponent {
   onGameIdChanged(gameId: string) {
     this.gameId = gameId;
   }
-
   onFlagChanged(newFlags: boolean[]) {
     this.flagLocations = newFlags;
   }
 
-  toggleMode: boolean = false;
+  flagMode: boolean = false;
   @Output() modeChanged = new EventEmitter<boolean>();
 
   handleClick(){
-    this.toggleMode = !this.toggleMode
-    this.modeChanged.emit(this.toggleMode)
+    this.flagMode = !this.flagMode
+    this.modeChanged.emit(this.flagMode)
   }
   
   constructor() {
     for (let i = 0; i < 256; i++) {
       this.flagLocations.push(false)
     }
+    this.flagLocations[10] = true;
   }
 }

@@ -5,16 +5,19 @@
     [board]="board"
     [cellId]="+cellId"
     [gameId]="gameId"
+    [flagMode]="flagMode"
+    [flagLocations]="flagLocations"
     (boardChanged)="onBoardChanged($event)"
     (gameChanged)="onGameIdChanged($event)"
+    (flagsChanged)="onFlagChanged($event)"
   ></app-cell>
 </div>
 <div class="mx-auto">
   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-64" (click)="handleClick()">
-    <div *ngIf="toggleMode">
+    <div *ngIf="flagMode">
       ⛳️ Place Flags
     </div>
-    <div *ngIf="!toggleMode">
+    <div *ngIf="!flagMode">
       ⛏️ Dig
     </div>
   </button>
