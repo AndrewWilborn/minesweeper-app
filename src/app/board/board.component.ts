@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-board',
@@ -6,11 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  board:string = "012345678                                                                                                                                                                                                                                                       "
-  gameId:string = "";
-  idArray(x:number){
+  board: string = "012345678                                                                                                                                                                                                                                                       "
+  flagLocations: boolean[] = []
+  gameId: string = "";
+  idArray(x: number) {
     let returnArr = [];
-    for(let i = 0; i < x; i++){
+    for (let i = 0; i < x; i++) {
       returnArr.push(i);
     }
     return returnArr;
@@ -21,5 +22,23 @@ export class BoardComponent {
   }
   onGameIdChanged(gameId: string) {
     this.gameId = gameId;
+  }
+
+  onFlagChanged(newFlags: boolean[]) {
+    this.flagLocations = newFlags;
+  }
+
+  toggleMode: boolean = false;
+  @Output() modeChanged = new EventEmitter<boolean>();
+
+  handleClick(){
+    this.toggleMode = !this.toggleMode
+    this.modeChanged.emit(this.toggleMode)
+  }
+  
+  constructor() {
+    for (let i = 0; i < 256; i++) {
+      this.flagLocations.push(false)
+    }
   }
 }
