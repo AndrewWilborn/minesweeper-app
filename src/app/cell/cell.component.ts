@@ -25,7 +25,7 @@ export class CellComponent {
     if (!this.flagMode && !this.flagLocations[this.cellId]) {
       if (!this.gameId) {
         try {
-          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId+1}`,
+          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId}`,
             {
               method: 'POST',
             })
