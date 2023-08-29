@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  board: string = "012345678                                                                                                                                                                                                                                                       "
+  board: string = "                                                                                                                                                                                                                                                                "
   flagLocations: boolean[] = []
   gameId: string = "";
   idArray(x: number) {
@@ -39,6 +39,5 @@ export class BoardComponent {
     for (let i = 0; i < 256; i++) {
       this.flagLocations.push(false)
     }
-    this.flagLocations[10] = true;
   }
 }

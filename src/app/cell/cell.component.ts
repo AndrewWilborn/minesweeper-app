@@ -25,7 +25,7 @@ export class CellComponent {
     if (!this.flagMode && !this.flagLocations[this.cellId]) {
       if (!this.gameId) {
         try {
-          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId}`,
+          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId+1}`,
             {
               method: 'POST',
             })
@@ -34,22 +34,23 @@ export class CellComponent {
               this.gameId = data;
               this.gameChanged.emit(this.gameId)
             })
-          await fetch(`http://localhost:5062/move?move=${this.cellId}&uuid=${this.gameId}`,
+        } catch (error: any) {
+          console.error(error.message)
+        }
+      }
+      try {
+        await fetch(`http://localhost:5062/move?move=${this.cellId+1}&uuid=${this.gameId}`,
           {
             method: 'POST',
           })
-          .then(response => {
-            console.log(response)
-            return response.json()
-          })
+          .then(response => response.json())
           .then(data => {
             this.board = data.board;
             console.log(this.board)
             this.boardChanged.emit(this.board)
           })
-        } catch (error: any) {
-          console.error(error.message)
-        }
+      } catch (error: any) {
+        console.error(error.message)
       }
     }
     else if (this.flagMode) {
