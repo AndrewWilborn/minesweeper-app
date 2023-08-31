@@ -25,7 +25,7 @@ export class CellComponent {
     if (!this.flagMode && !this.flagLocations[this.cellId]) {
       if (!this.gameId) {
         try {
-          await fetch(`https://ajw-minesweeper.azurewebsites.net/newGame?firstMove=${this.cellId}`,
+          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId}`,
             {
               method: 'POST',
             })
@@ -39,7 +39,7 @@ export class CellComponent {
         }
       }
       try {
-        await fetch(`https://ajw-minesweeper.azurewebsites.net/move?move=${this.cellId+1}&uuid=${this.gameId}`,
+        await fetch(`http://localhost:5062/move?move=${this.cellId+1}&uuid=${this.gameId}`,
           {
             method: 'POST',
           })
@@ -57,5 +57,11 @@ export class CellComponent {
       this.flagLocations[this.cellId] = !this.flagLocations[this.cellId]
       this.flagsChanged.emit(this.flagLocations)
     }
+  }
+
+  rightClickHandler() {
+    this.flagLocations[this.cellId] = !this.flagLocations[this.cellId]
+    this.flagsChanged.emit(this.flagLocations)
+    return false
   }
 }

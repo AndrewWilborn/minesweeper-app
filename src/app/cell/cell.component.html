@@ -1,5 +1,5 @@
 <div *ngIf="!flagLocations[cellId]">
-  <div *ngIf="board[cellId]===' '" (click)="clickHandler()" [ngClass]="'
+  <div *ngIf="board[cellId]===' '" (click)="clickHandler()" (contextmenu)="rightClickHandler()" [ngClass]="'
     w-6
     h-6
     bg-hidden
@@ -20,7 +20,7 @@ bg-redmine'
 
 </div>
 
-<div *ngIf="flagLocations[cellId]" (click)="clickHandler()" [ngClass]="'
+<div *ngIf="flagLocations[cellId]" (click)="clickHandler()" (contextmenu)="rightClickHandler()" [ngClass]="'
   w-6
   h-6
   bg-flag
