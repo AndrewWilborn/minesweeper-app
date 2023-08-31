@@ -64,4 +64,9 @@ export class CellComponent {
     this.flagsChanged.emit(this.flagLocations)
     return false
   }
+
+  numberReveal(){
+    // if the number of ajacent flags is equal to the number on the cell
+    // reveal all of the non-flagged, unrevealed, adjacent cells
+  }
 }

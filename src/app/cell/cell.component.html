@@ -5,7 +5,7 @@
     bg-hidden
   '"></div>
 
-  <div *ngIf="isNumber(board[cellId])" [ngClass]="'
+  <div *ngIf="isNumber(board[cellId])" (click)="numberReveal()" [ngClass]="'
     w-6
     h-6
   ' + numberArr[+board[cellId]]
