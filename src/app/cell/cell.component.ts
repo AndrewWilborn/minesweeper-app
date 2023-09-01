@@ -6,6 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent {
+  localaddress:string = "http://localhost:5062";
+  liveaddress:string = "https://ajw-minesweeper.azurewebsites.net/"
+
   @Input() board!: string;
   @Input() cellId!: number;
   @Input() gameId!: string;
@@ -25,7 +28,7 @@ export class CellComponent {
     if (!this.flagMode && !this.flagLocations[this.cellId]) {
       if (!this.gameId) {
         try {
-          await fetch(`http://localhost:5062/newGame?firstMove=${this.cellId}`,
+          await fetch(`${this.liveaddress}/newGame?firstMove=${this.cellId}`,
             {
               method: 'POST',
             })
@@ -39,7 +42,7 @@ export class CellComponent {
         }
       }
       try {
-        await fetch(`http://localhost:5062/move?move=${this.cellId+1}&uuid=${this.gameId}`,
+        await fetch(`${this.liveaddress}/move?move=${this.cellId+1}&uuid=${this.gameId}`,
           {
             method: 'POST',
           })
