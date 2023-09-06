@@ -42,7 +42,7 @@ export class CellComponent {
         }
       }
       try {
-        await fetch(`${this.liveaddress}/move?move=${this.cellId+1}&uuid=${this.gameId}`,
+        await fetch(`${this.liveaddress}/move?move=${this.cellId}&uuid=${this.gameId}`,
           {
             method: 'POST',
           })
@@ -70,6 +70,10 @@ export class CellComponent {
 
   numberReveal(){
     // if the number of ajacent flags is equal to the number on the cell
+    const adjacentCells = [-17, -16, -15, -1, 1, 15, 16, 17];
+    let adjacentFlags = 0;
+
+    
     // reveal all of the non-flagged, unrevealed, adjacent cells
   }
 }
