@@ -69,9 +69,13 @@ export class CellComponent {
 
   async numberReveal(){
     const adjacentCells = [-17, -16, -15, -1, 1, 15, 16, 17];
+    const leftExceptions = [-17, -1, 15];
+    const rightExceptions = [-15, 1, 17];
     // if the number of ajacent flags is equal to the number on the cell
     let adjacentFlags = 0;
     for(let i = 0; i < adjacentCells.length; i++){
+      if(this.cellId % 16 == 0 && leftExceptions.includes(adjacentCells[i])) continue;
+      if(this.cellId % 16 == 15 && rightExceptions.includes(adjacentCells[i])) continue;
       if(this.flagLocations[this.cellId + adjacentCells[i]]){
         adjacentFlags++;
       }
@@ -85,6 +89,8 @@ export class CellComponent {
     // reveal all of the non-flagged, unrevealed, adjacent cells
     for(let i = 0; i < adjacentCells.length; i++){
       if(this.flagLocations[this.cellId+adjacentCells[i]]) continue;
+      if(this.cellId % 16 == 0 && leftExceptions.includes(adjacentCells[i])) continue;
+      if(this.cellId % 16 == 15 && rightExceptions.includes(adjacentCells[i])) continue;
       try {
         await fetch(`${this.liveaddress}/move?move=${this.cellId+adjacentCells[i]}&uuid=${this.gameId}`,
           {
@@ -93,11 +99,11 @@ export class CellComponent {
           .then(response => response.json())
           .then(data => {
             this.board = data.board;
-            this.boardChanged.emit(this.board)
           })
       } catch (error: any) {
         console.error(error.message)
       }
     }
+    this.boardChanged.emit(this.board)
   }
 }
