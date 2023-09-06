@@ -49,7 +49,6 @@ export class CellComponent {
           .then(response => response.json())
           .then(data => {
             this.board = data.board;
-            console.log(this.board)
             this.boardChanged.emit(this.board)
           })
       } catch (error: any) {
@@ -68,12 +67,37 @@ export class CellComponent {
     return false
   }
 
-  numberReveal(){
-    // if the number of ajacent flags is equal to the number on the cell
+  async numberReveal(){
     const adjacentCells = [-17, -16, -15, -1, 1, 15, 16, 17];
+    // if the number of ajacent flags is equal to the number on the cell
     let adjacentFlags = 0;
-
+    for(let i = 0; i < adjacentCells.length; i++){
+      if(this.flagLocations[this.cellId + adjacentCells[i]]){
+        adjacentFlags++;
+      }
+    }
+    // @ts-ignore
+    if(this.board[this.cellId] != adjacentFlags){ // Intentional use of non-strict equality
+      console.log("number does not match flag count, returning")
+      return;
+    }
     
     // reveal all of the non-flagged, unrevealed, adjacent cells
+    for(let i = 0; i < adjacentCells.length; i++){
+      if(this.flagLocations[this.cellId+adjacentCells[i]]) continue;
+      try {
+        await fetch(`${this.liveaddress}/move?move=${this.cellId+adjacentCells[i]}&uuid=${this.gameId}`,
+          {
+            method: 'POST',
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.board = data.board;
+            this.boardChanged.emit(this.board)
+          })
+      } catch (error: any) {
+        console.error(error.message)
+      }
+    }
   }
 }
