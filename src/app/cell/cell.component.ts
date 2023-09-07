@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent {
-  localaddress:string = "http://localhost:5062";
-  liveaddress:string = "https://ajw-minesweeper.azurewebsites.net/"
+  address:string = "http://localhost:5062";
+  // address:string = "https://ajw-minesweeper.azurewebsites.net/"
 
   @Input() board!: string;
   @Input() cellId!: number;
@@ -28,7 +28,7 @@ export class CellComponent {
     if (!this.flagMode && !this.flagLocations[this.cellId]) {
       if (!this.gameId) {
         try {
-          await fetch(`${this.liveaddress}/newGame?firstMove=${this.cellId}`,
+          await fetch(`${this.address}/newGame?firstMove=${this.cellId}`,
             {
               method: 'POST',
             })
@@ -42,7 +42,7 @@ export class CellComponent {
         }
       }
       try {
-        await fetch(`${this.liveaddress}/move?move=${this.cellId}&uuid=${this.gameId}`,
+        await fetch(`${this.address}/move?move=${this.cellId}&uuid=${this.gameId}`,
           {
             method: 'POST',
           })
@@ -92,7 +92,7 @@ export class CellComponent {
       if(this.cellId % 16 == 0 && leftExceptions.includes(adjacentCells[i])) continue;
       if(this.cellId % 16 == 15 && rightExceptions.includes(adjacentCells[i])) continue;
       try {
-        await fetch(`${this.liveaddress}/move?move=${this.cellId+adjacentCells[i]}&uuid=${this.gameId}`,
+        await fetch(`${this.address}/move?move=${this.cellId+adjacentCells[i]}&uuid=${this.gameId}`,
           {
             method: 'POST',
           })
