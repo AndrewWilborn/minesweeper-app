@@ -33,6 +33,14 @@ export class BoardComponent {
     this.minesLeft = 50 - numFlags;
   }
 
+  onGameOver() {
+    console.log("GAME OVER")
+  }
+
+  onWin() {
+
+  }
+
   flagMode: boolean = false;
   @Output() modeChanged = new EventEmitter<boolean>();
 

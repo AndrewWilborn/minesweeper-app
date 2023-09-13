@@ -17,6 +17,8 @@ export class CellComponent {
   @Output() boardChanged = new EventEmitter<string>();
   @Output() gameChanged = new EventEmitter<string>();
   @Output() flagsChanged = new EventEmitter<boolean[]>();
+  @Output() gameOver = new EventEmitter();
+  @Output() win = new EventEmitter();
   numberArr: string[] = ["bg-blank", "bg-one", "bg-two", "bg-three", "bg-four", "bg-five", "bg-six", "bg-seven", "bg-eight"];
 
   isNumber(x: string) {
@@ -50,6 +52,14 @@ export class CellComponent {
           .then(data => {
             this.board = data.board;
             this.boardChanged.emit(this.board)
+
+            if(data.isFinished){
+              if(data.victory){
+                this.win.emit()
+              } else {
+                this.gameOver.emit()
+              }
+            }
           })
       } catch (error: any) {
         console.error(error.message)
