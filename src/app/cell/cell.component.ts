@@ -109,6 +109,14 @@ export class CellComponent {
           .then(response => response.json())
           .then(data => {
             this.board = data.board;
+            
+            if(data.isFinished){
+              if(data.victory){
+                this.win.emit()
+              } else {
+                this.gameOver.emit()
+              }
+            }
           })
       } catch (error: any) {
         console.error(error.message)
