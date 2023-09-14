@@ -6,6 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
+  address: string = "http://localhost:5062";
+  // address:string = "https://ajw-minesweeper.azurewebsites.net/"
+
   board: string = "                                                                                                                                                                                                                                                                "
   flagLocations: boolean[] = [];
   gameId: string = "";
@@ -27,28 +30,40 @@ export class BoardComponent {
   onFlagChanged(newFlags: boolean[]) {
     this.flagLocations = newFlags;
     let numFlags = 0;
-    for(let i = 0; i < this.flagLocations.length; i++){
-      if(this.flagLocations[i]) numFlags++;
+    for (let i = 0; i < this.flagLocations.length; i++) {
+      if (this.flagLocations[i]) numFlags++;
     }
     this.minesLeft = 50 - numFlags;
   }
 
   onGameOver() {
-    console.log("GAME OVER")
+    alert("GAME OVER");
+    location.reload();
   }
 
-  onWin() {
-
+  async onWin() {
+    let time = -1000;
+    try {
+      await fetch(`${this.address}/move?uuid=${this.gameId}`)
+      .then(response => response.json())
+      .then(data => {
+        time = data.time;
+      })
+    } catch (error: any) {
+      console.error(error.message)
+    }
+    alert(`YOU WIN Your time: ${time / 1000}`);
+    location.reload();
   }
 
   flagMode: boolean = false;
   @Output() modeChanged = new EventEmitter<boolean>();
 
-  handleClick(){
+  handleClick() {
     this.flagMode = !this.flagMode
     this.modeChanged.emit(this.flagMode)
   }
-  
+
   constructor() {
     for (let i = 0; i < 256; i++) {
       this.flagLocations.push(false)
