@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  address: string = "http://localhost:5062";
-  // address:string = "https://ajw-minesweeper.azurewebsites.net/"
+  // address: string = "http://localhost:5062";
+  address:string = "https://ajw-minesweeper.azurewebsites.net/"
 
   board: string = "                                                                                                                                                                                                                                                                "
   flagLocations: boolean[] = [];
@@ -42,17 +42,21 @@ export class BoardComponent {
   }
 
   async onWin() {
-    let time = -1000;
-    try {
-      await fetch(`${this.address}/move?uuid=${this.gameId}`)
-      .then(response => response.json())
-      .then(data => {
-        time = data.time;
-      })
-    } catch (error: any) {
-      console.error(error.message)
-    }
-    alert(`YOU WIN Your time: ${time / 1000}`);
+    // let time = -1000;
+    // console.log(this.gameId);
+    // try {
+    //   await fetch(`${this.address}/move?uuid=${this.gameId}`,{
+    //     method: 'POST',
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     time = data.time;
+    //   })
+    // } catch (error: any) {
+    //   console.error(error.message)
+    // }
+    // alert(`YOU WIN Your time: ${time / 1000}`);
+    alert('YOU WIN');
     location.reload();
   }
 

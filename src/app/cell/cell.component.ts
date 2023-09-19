@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent {
-  address:string = "http://localhost:5062";
-  // address:string = "https://ajw-minesweeper.azurewebsites.net/"
+  // address:string = "http://localhost:5062";
+  address:string = "https://ajw-minesweeper.azurewebsites.net/"
 
   @Input() board!: string;
   @Input() cellId!: number;
